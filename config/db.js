@@ -15,7 +15,7 @@ const DB = process.env.MONGODB_URL.replace(
 const connect = async () => {
     try {
         await mongoose.connect(DB);
-        console.log(`databse is connected`.bgYellow.bgBlack);
+        console.log(`databse is connected`.bgMagenta.bgBlack);
     }
     catch (err) {
         throw (err)
