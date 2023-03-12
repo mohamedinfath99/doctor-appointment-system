@@ -30,9 +30,9 @@ const Register = () => {
             <Input type='password' required />
           </Form.Item>
 
-          <Link to='/login' className='m-2'>Already user login here</Link>
-
           <button className='btn btn-primary' type='submit'>Register</button>
+
+          <Link to='/login' className='m-2 linkToLogin'>Already user login here</Link>
 
         </Form>
       </div>

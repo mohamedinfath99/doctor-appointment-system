@@ -9,4 +9,17 @@
     border: 1px solid grey;
     padding: 30px;
     border-radius: 10px;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+}
+
+.linkToLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px !important;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
 }

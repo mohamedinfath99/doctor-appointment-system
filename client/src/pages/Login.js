@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <>
       <div className='form-container'>
-        <Form layout='vertical' onFinish={onFinishHandeler} className="register-form">
+        <Form layout='vertical' onFinish={onFinishHandeler} className="login-form">
 
           <h3 className='text-center'>Login Form</h3>
 
@@ -26,9 +26,9 @@ const Login = () => {
             <Input type='password' required />
           </Form.Item>
 
-          <Link to='/register' className='m-2'>Not a user Register here</Link>
-
           <button className='btn btn-primary' type='submit'>Login</button>
+
+          <Link to='/register' className='m-2 linkToRegister'>Not a user Register here</Link>
 
         </Form>
       </div>
