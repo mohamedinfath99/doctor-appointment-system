@@ -3,6 +3,7 @@ import colors from 'colors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import connect from './config/db.js';
+import userRoutes from './routes/userRoutes.js'
 
 
 // dotenv config
@@ -18,11 +19,8 @@ app.use(morgan('dev'));
 
 
 // routes
-app.get('/', (req, res)  => {
-    res.status(200).send({
-        message : "server is running"
-    })
-});
+app.use('/api/v1/users', userRoutes)
+
 
 //listen port
 const port = process.env.PORT || 8080;
