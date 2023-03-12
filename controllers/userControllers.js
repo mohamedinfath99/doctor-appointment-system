@@ -1,5 +1,6 @@
 import User from '../models/userModels.js';
 import bycrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 
 
@@ -35,4 +36,30 @@ export const registerControllers = async (req, res) => {
 
 
 
-export const LoginControllers = () => { }
+
+
+export const LoginControllers = async (req, res) => { 
+    try {
+        const user = await User.findOne({ email: req.body.email})
+
+        if(!user){
+            return res.status(200).send({ message: 'User not found', success: false})
+        }
+
+        const isMatch = await bycrypt.compare(req.body.password, user.password)
+        
+        if(!isMatch) {
+            return res.status(200).send({ message: 'Invalid Email or Password', success: false })
+        }
+
+        const token = jwt.sign({id: user._id},process.env.JWT_SECRET, {expiresIn: "1d"})
+
+        res.status(200).send({ message: 'Login Success', success: true, token})
+        
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).send({message: `Error in Login CTRL ${error.message}`});
+        
+    }
+}
