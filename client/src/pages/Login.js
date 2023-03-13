@@ -3,17 +3,25 @@ import '../styles/LoginStyles.css';
 import { Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { showLoading, hideLoading } from '../redux/features/alertSlice.js'
+
 
 const Login = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   // form handler
   const onFinishHandeler = async (values) => {
     try {
-      const res = await axios.post('/api/v1/users/login', values)
 
-      if(res.data.success){
+      dispatch(showLoading());
+      const res = await axios.post('/api/v1/users/login', values);
+      dispatch(hideLoading());
+
+      if (res.data.success) {
         localStorage.setItem("token", res.data.token);
         message.success('Login Succesfully')
         navigate('/')
@@ -23,6 +31,7 @@ const Login = () => {
       }
     }
     catch (error) {
+      dispatch(hideLoading());
       console.log(error);
       message.error('Something went wrong')
     }
