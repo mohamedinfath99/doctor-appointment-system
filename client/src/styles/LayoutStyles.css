@@ -72,3 +72,11 @@
 .active a, .active i{
     color: rgba(2, 20, 48, 0.938);
 }
+
+.header-content{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    justify-content: center;
+    margin: 0 15px;
+}
