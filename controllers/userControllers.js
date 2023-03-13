@@ -68,7 +68,8 @@ export const LoginControllers = async (req, res) => {
 
 export const authControllers = async (req, res) => {
     try {
-        const user = await User.findOne({ _id: req.body.userId})
+        const user = await User.findById({ _id: req.body.userId});
+        user.password = undefined;
 
         if(!user){
             return res.status(200).send({
@@ -79,10 +80,7 @@ export const authControllers = async (req, res) => {
         else {
             res.status(200).send({
                 success: true,
-                data: {
-                    name: user.name,
-                    email: user.email,
-                }
+                data: user
             })
         }
     }
