@@ -17,9 +17,12 @@ const Login = () => {
   const onFinishHandeler = async (values) => {
     try {
 
+      
       dispatch(showLoading());
       const res = await axios.post('/api/v1/users/login', values);
+      window.location.reload();
       dispatch(hideLoading());
+
 
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
