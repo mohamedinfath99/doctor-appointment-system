@@ -106,7 +106,7 @@ export const applyDoctorController = async (req, res) => {
 
         notification.push({
             type: 'apply-doctor-request',
-            message: `${newDoctor.firstName} ${newDoctor.lastname} Has applied for a doctor account `,
+            message: `${newDoctor.firstName} ${newDoctor.lastname} Has applied for a doctor account`,
             data: {
                 doctorId: newDoctor._id,
                 name: newDoctor.firstName + " " + newDoctor.lastname,
