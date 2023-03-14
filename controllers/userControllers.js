@@ -106,10 +106,10 @@ export const applyDoctorController = async (req, res) => {
 
         notification.push({
             type: 'apply-doctor-request',
-            message: `${newDoctor.firstName} ${newDoctor.lastname} Has applied for a doctor account`,
+            message: `${newDoctor.firstName} ${newDoctor.lastName} Has applied for a doctor account`,
             data: {
                 doctorId: newDoctor._id,
-                name: newDoctor.firstName + " " + newDoctor.lastname,
+                name: newDoctor.firstName + " " + newDoctor.lastName,
                 onClickPath: '/admin/doctors'
             }
         })
@@ -127,6 +127,64 @@ export const applyDoctorController = async (req, res) => {
             success: false,
             error,
             message: 'Error while applying for doctor'
+        })
+    }
+}
+
+
+
+export const getAllNotificationController = async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.body.userId });
+        const seennotification = user.seennotification;
+        const notification = user.notification;
+
+        seennotification.push(...notification);
+        user.notification = [];
+        user.seennotification = notification;
+
+        const updatedUser = await user.save()
+        res.status(200).send({
+            success: true,
+            message: 'All notification marked as read',
+            data: updatedUser,
+        });
+
+
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send({
+            message: 'Error in notification',
+            success: false,
+            error
+        })
+    }
+}
+
+
+
+export const deleteAllNotificationController = async (req, res) => {
+    try {
+        const user = await User.findOne({_id: req.body.userId});
+        user.notification= [];
+        user.seennotification = [];
+        const updatedUser =  await user.save();
+        updatedUser.password = undefined;
+
+        res.status(200).send({
+            success: true,
+            message: "Notification deleted successfully",
+            data: updatedUser,
+        })
+
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Unable to delete all notifications',
+            error
         })
     }
 }
