@@ -40,6 +40,10 @@ const doctoSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'fees is required']
     },
+    status: {
+        type: String,
+        default: 'pending'
+    },
     timings: {
         type: Object,
         required: [true, 'work timing is required']
