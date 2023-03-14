@@ -3,7 +3,8 @@ import colors from 'colors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import connect from './config/db.js';
-import userRoutes from './routes/userRoutes.js'
+import userRoutes from './routes/userRoutes.js';
+import adminRoutes from './routes/adminRoutes.js'
 
 
 // dotenv config
@@ -20,6 +21,7 @@ app.use(morgan('dev'));
 
 // routes
 app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/admin', adminRoutes)
 
 
 //listen port
