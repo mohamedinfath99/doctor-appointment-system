@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import connect from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import adminRoutes from './routes/adminRoutes.js'
+import doctorRoutes from './routes/doctorRoutes.js'
 
 
 // dotenv config
@@ -22,6 +23,7 @@ app.use(morgan('dev'));
 // routes
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/admin', adminRoutes)
+app.use('/api/v1/doctor', doctorRoutes)
 
 
 //listen port
