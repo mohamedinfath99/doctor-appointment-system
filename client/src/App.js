@@ -11,6 +11,9 @@ import NotificationPage from './pages/NotificationPage';
 import Users from './pages/admin/Users';
 import Doctors from './pages/admin/Doctors';
 import Profile from './pages/Doctor/Profile';
+import BookingPage from './pages/BookingPage';
+import Appointments from './pages/Appointments';
+import DoctorAppointments from './pages/Doctor/DoctorAppointments';
 
 function App() {
 
@@ -24,14 +27,7 @@ function App() {
         ) : (
           <Routes>
 
-            <Route
-              path='/'
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            />
+
 
             <Route
               path='/apply-doctor'
@@ -74,6 +70,16 @@ function App() {
 
 
             <Route
+              path='/doctor/book-appointment/:doctorId'
+              element={
+                <ProtectedRoute>
+                  <BookingPage />
+                </ProtectedRoute>
+              }
+            />
+
+
+            <Route
               path='/notification'
               element={
                 <ProtectedRoute>
@@ -97,6 +103,36 @@ function App() {
                 <PublicRoute>
                   <Register />
                 </PublicRoute>
+              }
+            />
+
+            <Route
+              path='/appointments'
+              element={
+                <ProtectedRoute>
+                  <Appointments />
+                </ProtectedRoute>
+              }
+            />
+
+
+            <Route
+              path='/doctor-appointments'
+              element={
+                <ProtectedRoute>
+                  <DoctorAppointments />
+                </ProtectedRoute>
+              }
+            />
+
+
+
+            <Route
+              path='/'
+              element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
               }
             />
 
